@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     // images: ['https://yourwebsite.com/og-image.jpg'],
     creator: '@YourTwitterHandle',
   },
+  verification: {
+    google: 'eNOI_1X8M9l5e8ogdABW4Qzg48inln19BdJyxfh',
+  },
   robots: {
     index: true,
     follow: true,
