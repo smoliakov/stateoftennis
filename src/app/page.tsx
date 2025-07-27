@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import ThemeToggle from './components/ThemeToggle';
 import TournamentCard from './components/TournamentCard';
 import { tournaments } from '@/app/data/tournaments';
-import { getOngoingTournaments } from '@/app/utils';
 import OngoingTournaments from '@/app/components/OngoingTournaments';
 
 export const metadata: Metadata = {
