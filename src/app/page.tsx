@@ -4,6 +4,7 @@ import ThemeToggle from './components/ThemeToggle';
 import TournamentCard from './components/TournamentCard';
 import { tournaments } from '@/app/data/tournaments';
 import { getOngoingTournaments } from '@/app/utils';
+import OngoingTournaments from '@/app/components/OngoingTournaments';
 
 export const metadata: Metadata = {
   title: 'The Global State of Tennis 2025 — Iconic Tournament Courts',
@@ -70,16 +71,7 @@ const LandingPage: React.FC = () => {
         </header>
 
         <main>
-          <h2 className="text-xl md:text-3xl font-bold mb-10 md:mb-16">Ongoing Tournaments</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {getOngoingTournaments(sortedTournaments).map((tournament) => (
-              <div key={tournament.name + tournament.startDate}>
-                <TournamentCard tournament={tournament} />
-              </div>
-            ))}
-          </div>
-
-          <hr className="text-zinc-100 my-10 " />
+          <OngoingTournaments tournaments={sortedTournaments} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {sortedTournaments.map((tournament) => (
