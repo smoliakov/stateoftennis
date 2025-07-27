@@ -32,6 +32,27 @@ export interface Tournament {
 export const tournaments: Tournament[] = [
   // 2025 ATP Tour
   {
+    name: 'Omnium Banque Nationale présenté par Rogers',
+    tour: ['WTA'],
+    points: 1000,
+    startDate: '2025-07-27',
+    endDate: '2025-08-07',
+    court: {
+      innerColor: '#5A82B6',
+      outerColor: '#86A076',
+      surface: 'Hard',
+      surfaceText: 'Montréal',
+    },
+    location: {
+      city: 'Montreal',
+      country: 'Canada',
+    },
+    links: {
+      wta: 'https://www.wtatennis.com/tournaments/canadian-open',
+      officialSite: 'https://nationalbankopen.com',
+    },
+  },
+  {
     name: 'Brisbane International presented by Evie',
     tour: ['ATP'],
     points: 250,
@@ -538,6 +559,7 @@ export const tournaments: Tournament[] = [
       innerColor: '#8EAD52',
       outerColor: '#8EAD52',
       surface: 'Grass',
+      surfaceText: 'Wimbledon',
     },
     location: { city: 'London', country: 'United Kingdom' },
     links: {
@@ -644,7 +666,7 @@ export const tournaments: Tournament[] = [
   },
   {
     name: 'National Bank Open Presented by Rogers',
-    tour: ['ATP', 'WTA'],
+    tour: ['ATP'],
     points: 1000,
     startDate: '2025-07-27',
     endDate: '2025-08-07',

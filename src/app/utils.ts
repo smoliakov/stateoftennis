@@ -85,3 +85,12 @@ export function getOngoingTournaments(
     return tournament.startDate <= currentDate && tournament.endDate >= currentDate;
   });
 }
+
+export const isOngoing = (startDate: string, endDate: string): boolean => {
+  const now = new Date();
+
+  const start = new Date(startDate + 'T00:00:00');
+  const end = new Date(endDate + 'T23:59:59');
+
+  return start <= now && end >= now;
+};

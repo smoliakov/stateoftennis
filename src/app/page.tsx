@@ -5,7 +5,6 @@ import TournamentCard from './components/TournamentCard';
 import { tournaments } from '@/app/data/tournaments';
 import { getOngoingTournaments } from '@/app/utils';
 
-// SEO Metadata export for Next.js 15+
 export const metadata: Metadata = {
   title: 'The Global State of Tennis 2025 — Iconic Tournament Courts',
   description:
@@ -45,6 +44,12 @@ export const metadata: Metadata = {
 };
 
 const LandingPage: React.FC = () => {
+  const sortedTournaments = [...tournaments].sort((a, b) => {
+    const dateA = new Date(a.startDate);
+    const dateB = new Date(b.startDate);
+    return dateA.getTime() - dateB.getTime();
+  });
+
   return (
     <div className="bg-white dark:bg-black text-neutral-800 dark:text-neutral-200 min-h-screen">
       <div className="max-w-7xl mx-auto p-4 sm:p-8 relative">
@@ -64,7 +69,7 @@ const LandingPage: React.FC = () => {
         <main>
           <h2 className="text-xl md:text-3xl font-bold mb-10 md:mb-16">Ongoing Tournaments</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {getOngoingTournaments(tournaments).map((tournament) => (
+            {getOngoingTournaments(sortedTournaments).map((tournament) => (
               <div key={tournament.name + tournament.startDate}>
                 <TournamentCard tournament={tournament} />
               </div>
@@ -74,7 +79,7 @@ const LandingPage: React.FC = () => {
           <hr className="text-zinc-100 my-10 " />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {tournaments.map((tournament) => (
+            {sortedTournaments.map((tournament) => (
               <TournamentCard key={tournament.name + tournament.startDate} tournament={tournament} />
             ))}
           </div>

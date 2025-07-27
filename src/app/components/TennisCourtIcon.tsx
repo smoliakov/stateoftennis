@@ -1,14 +1,26 @@
+import { Tournament } from '@/app/data/tournaments';
+
 interface IconProps {
   className?: string;
 }
 
 interface TennisCourtIconProps extends IconProps {
-  innerColor: string;
-  outerColor: string;
-  text?: string;
+  tournament: Tournament;
 }
 
-const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({ innerColor, outerColor, text, className }) => (
+const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({
+  className,
+  tournament: {
+    court: {
+      innerColor,
+      outerColor,
+      surfaceText,
+    },
+    location: {
+      city,
+    },
+  },
+}) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 380" aria-label="Tennis Court" className={className}>
     <rect width="280" height="380" fill={outerColor} />
     <rect x="50" y="50" width="180" height="280" fill={innerColor} />
@@ -23,7 +35,7 @@ const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({ innerColor, outerColo
       <line x1="90" y1="0" x2="90" y2="6" />
       <line x1="90" y1="274" x2="90" y2="280" />
     </g>
-    {text && (
+    {(surfaceText || city) && (
       <text
         x="140"
         y="362"
@@ -32,7 +44,7 @@ const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({ innerColor, outerColo
         fontSize="16"
         fontFamily="sans-serif"
         fontWeight="bold">
-        {text}
+        {(surfaceText || city).toUpperCase()}
       </text>
     )}
   </svg>

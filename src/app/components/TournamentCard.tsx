@@ -2,7 +2,7 @@
 
 import TennisCourtIcon from './TennisCourtIcon';
 import Link from 'next/link';
-import { downloadSVG, formatDateRange } from '@/app/utils';
+import { downloadSVG, formatDateRange, isOngoing } from '@/app/utils';
 import { Tournament } from '@/app/data/tournaments';
 
 const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
@@ -13,7 +13,6 @@ const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
     name,
     tour,
     points,
-    court: { innerColor, outerColor, surfaceText },
     links,
   } = tournament;
 
@@ -23,18 +22,31 @@ const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
   const end = new Date(endDate);
   const dateString = formatDateRange(start, end);
 
-  const link = links.atp ? links.atp : 'https://www.atptour.com/en/tournaments';
+  const link = links.atp || links.wta || 'https://www.atptour.com/en/tournaments';
+  const isOngoingTournament = isOngoing(startDate, endDate);
 
   return (
     <Link href={link} target={'_blank'} rel="noreferrer noopener">
-      <div className="relative group p-8 hover:bg-zinc-50 dark:hover:bg-white/10">
+      <div className="relative group p-8 pb-7 hover:bg-zinc-50 dark:hover:bg-white/10">
+        {isOngoingTournament && (
+          <div
+            className="uppercase absolute flex items-center top-2 left-2 text-[10px] font-bold text-emerald-600 bg-emerald-100 rounded-lg px-[6px] py-[1px] pl-[4px]">
+            {/* Ripple Container */}
+            <div className="relative mr-1 w-[8px] h-[8px]">
+              {/* Pulsing Ring */}
+              <span className="absolute inset-0 rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
+              {/* Static Dot */}
+              <span className="relative block w-[4px] h-[4px] rounded-full bg-emerald-700 mx-auto top-[2px]"></span>
+            </div>
+            Live
+          </div>
+        )}
+
         <div className="flex flex-col items-center justify-center">
           <div className="w-24 h-auto mb-4">
             <TennisCourtIcon
-              innerColor={innerColor}
-              outerColor={outerColor}
-              text={surfaceText}
               className="w-full h-full"
+              tournament={tournament}
             />
             {/* Download button visible only on hover */}
             <button
@@ -60,7 +72,7 @@ const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
             {name}
           </h3>
           <p className="text-sm text-zinc-500">{location.city}, {location.country}</p>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-center text-zinc-500 dark:text-zinc-400">
             {tourString} {points > 0 && points} • {dateString}
           </p>
         </div>
