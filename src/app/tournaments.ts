@@ -9,670 +9,43 @@ export interface Tournament {
   city?: string;    // Optional city for the tournament
   surface?: string; // Optional surface type (e.g., "Hard", "Clay", "Grass")
   link?: string; // Optional link to the tournament website or details
-  text?: string; // Optional text for additional information
+  surfaceText?: string; // Optional text for additional information
 }
 
+export type TourType = 'ATP' | 'WTA';
 
-// --- Tournament Data ---
-// const tournaments: Tournament[] = [
-//   { name: 'Australian Open', tour: 'Grand Slam', innerColor: '#3E8ACC', outerColor: '#2A7ABF' },
-//   { name: 'BNP Paribas Open', tour: 'ATP & WTA 1000', innerColor: '#5D3FD3', outerColor: '#3E8ACC' },
-//   { name: 'Miami Open', tour: 'ATP & WTA 1000', innerColor: '#008080', outerColor: '#005f5f' },
-//   { name: 'Rolex Monte-Carlo', tour: 'ATP Masters 1000', innerColor: '#B95E42', outerColor: '#A4503A' },
-//   { name: 'Mutua Madrid Open', tour: 'ATP & WTA 1000', innerColor: '#E34234', outerColor: '#C43022' },
-//   { name: 'Roland-Garros', tour: 'Grand Slam', innerColor: '#D46A4A', outerColor: '#BF5B3F' },
-//   { name: 'Wimbledon', tour: 'Grand Slam', innerColor: '#3A7D2A', outerColor: '#336F26' },
-//   { name: 'National Bank Open', tour: 'ATP & WTA 1000', innerColor: '#2A52BE', outerColor: '#22439E' },
-//   { name: 'US Open', tour: 'Grand Slam', innerColor: '#0062A8', outerColor: '#008080' },
-//   { name: 'Nitto ATP Finals', tour: 'ATP Finals', innerColor: '#2E3B4E', outerColor: '#202936' },
-// ];
+export type CourtSurface = 'Hard' | 'Clay' | 'Grass' | 'Carpet' | 'Other';
 
-// const tournaments: Tournament[] = [
-//   // Spring Clay Season
-//   { name: 'Rolex Monte-Carlo', tour: 'ATP Masters 1000', innerColor: '#B95E42', outerColor: '#A4503A' },
-//   { name: 'Mutua Madrid Open', tour: 'ATP & WTA 1000', innerColor: '#E34234', outerColor: '#C43022' },
-//   { name: 'Roland-Garros', tour: 'Grand Slam', innerColor: '#D46A4A', outerColor: '#BF5B3F' },
-//   { name: 'Internazionali BNL d’Italia (Rome)', tour: 'ATP & WTA 1000', innerColor: '#C1440E', outerColor: '#9C3B0E' },
-//   { name: 'Barcelona Open', tour: 'ATP 500', innerColor: '#CD5C5C', outerColor: '#B34747' },
-//
-//   // Summer Grass & Clay Season
-//   { name: 'Wimbledon', tour: 'Grand Slam', innerColor: '#3A7D2A', outerColor: '#336F26' },
-//   { name: 'Hamburg European Open', tour: 'ATP 500', innerColor: '#C45A3A', outerColor: '#A94A2F' },
-//   { name: 'Queen’s Club Championships', tour: 'ATP 500', innerColor: '#2E8B57', outerColor: '#246B45' },
-//   { name: 'Eastbourne International', tour: 'ATP & WTA 250', innerColor: '#3CB371', outerColor: '#2E8B57' },
-//   { name: 'Bad Homburg Open', tour: 'WTA 250', innerColor: '#228B22', outerColor: '#1E7B1E' },
-//
-//   // Summer Hard Court Season
-//   { name: 'National Bank Open', tour: 'ATP & WTA 1000', innerColor: '#2A52BE', outerColor: '#22439E' },
-//   { name: 'Cincinnati Open', tour: 'ATP & WTA 1000', innerColor: '#7B429B', outerColor: '#3675B3' },
-//   { name: 'US Open', tour: 'Grand Slam', innerColor: '#0062A8', outerColor: '#008080' },
-//   { name: 'Atlanta Open', tour: 'ATP 250', innerColor: '#1E90FF', outerColor: '#1C7CD6' },
-//   { name: 'Winston-Salem Open', tour: 'ATP 250', innerColor: '#4169E1', outerColor: '#3558BA' },
-//
-//   // Fall Indoor & Asian Hard Court Season
-//   { name: 'China Open (Beijing)', tour: 'ATP & WTA 500', innerColor: '#4682B4', outerColor: '#2E5E86' },
-//   { name: 'Shanghai Masters', tour: 'ATP Masters 1000', innerColor: '#5B92E5', outerColor: '#426BA9' },
-//   { name: 'Paris Masters', tour: 'ATP Masters 1000', innerColor: '#3B3B98', outerColor: '#2F2F73' },
-//   { name: 'Zhuhai Championships', tour: 'ATP 250', innerColor: '#3E6FB0', outerColor: '#30598F' },
-//   { name: 'Tokyo Open (Rakuten Japan)', tour: 'ATP 500', innerColor: '#4169E1', outerColor: '#2C4B9B' },
-//
-//   // Other Major Tournaments
-//   { name: 'Australian Open', tour: 'Grand Slam', innerColor: '#3E8ACC', outerColor: '#2A7ABF' },
-//   { name: 'BNP Paribas Open', tour: 'ATP & WTA 1000', innerColor: '#5D3FD3', outerColor: '#3E8ACC' },
-//   { name: 'Miami Open', tour: 'ATP & WTA 1000', innerColor: '#008080', outerColor: '#005f5f' },
-//   { name: 'Nitto ATP Finals', tour: 'ATP Finals', innerColor: '#2E3B4E', outerColor: '#202936' },
-//   { name: 'Laver Cup', tour: 'Team Event', innerColor: '#0C0C0C', outerColor: '#1C1C1C' },
-// ];
+export interface TournamentNext {
+  name: string;
+  tour: TourType[]; // Array of supported tours
+  points: number; // Ranking points awarded
 
-// const tournaments: Tournament[] = [
-//   // Spring Clay Season
-//   {
-//     name: 'Rolex Monte‑Carlo Masters',
-//     tour: 'ATP Masters 1000',
-//     innerColor: '#B95E42',
-//     outerColor: '#A4503A',
-//     startDate: '2025-04-06',
-//     endDate: '2025-04-13',
-//   },
-//   {
-//     name: 'Mutua Madrid Open',
-//     tour: 'ATP & WTA 1000',
-//     innerColor: '#E34234',
-//     outerColor: '#C43022',
-//     startDate: '2025-04-21',  // official sources vary: confirmed April 21–May 4 :contentReference[oaicite:1]{index=1}
-//     endDate: '2025-05-04',
-//   },
-//   {
-//     name: 'Roland‑Garros (French Open)',
-//     tour: 'Grand Slam',
-//     innerColor: '#D46A4A',
-//     outerColor: '#BF5B3F',
-//     startDate: '2025-05-25',
-//     endDate: '2025-06-08',
-//   },
-//
-//   // Summer Grass Season
-//   {
-//     name: 'Queen’s Club Championships',
-//     tour: 'ATP 500',
-//     innerColor: '#2E8B57',
-//     outerColor: '#246B45',
-//     startDate: '2025-06-16',
-//     endDate: '2025-06-22',  // per ATP grass calendar :contentReference[oaicite:2]{index=2}
-//   },
-//   {
-//     name: 'Eastbourne International',
-//     tour: 'ATP & WTA 250 / 500',
-//     innerColor: '#3CB371',
-//     outerColor: '#2E8B57',
-//     startDate: '2025-06-22',
-//     endDate: '2025-06-28',  // combined week per grass schedule list :contentReference[oaicite:3]{index=3}
-//   },
-//   {
-//     name: 'Wimbledon',
-//     tour: 'Grand Slam',
-//     innerColor: '#3A7D2A',
-//     outerColor: '#336F26',
-//     startDate: '2025-06-30',
-//     endDate: '2025-07-13',  // confirmed via Reuters and The Sun :contentReference[oaicite:4]{index=4}
-//   },
-//
-//   // Summer Hard Court Season
-//   {
-//     name: 'National Bank Open (Toronto/Montreal)',
-//     tour: 'ATP & WTA 1000',
-//     innerColor: '#2A52BE',
-//     outerColor: '#22439E',
-//     startDate: '2025-07-27',
-//     endDate: '2025-08-03',  // week 31/32 per calendar :contentReference[oaicite:5]{index=5}
-//   },
-//   {
-//     name: 'Cincinnati Open',
-//     tour: 'ATP & WTA 1000',
-//     innerColor: '#7B429B',
-//     outerColor: '#3675B3',
-//     startDate: '2025-08-07',
-//     endDate: '2025-08-17',  // includes final week starting Aug 11, ends Aug 17–24 per calendar :contentReference[oaicite:6]{index=6}
-//   },
-//   {
-//     name: 'US Open',
-//     tour: 'Grand Slam',
-//     innerColor: '#0062A8',
-//     outerColor: '#008080',
-//     startDate: '2025-08-24',
-//     endDate: '2025-09-07',  // US Open week from August 24 to early September :contentReference[oaicite:7]{index=7}
-//   },
-//
-//   // Fall Hard Court / Indoor Season
-//   {
-//     name: 'China Open (Beijing)',
-//     tour: 'ATP & WTA 500',
-//     innerColor: '#4682B4',
-//     outerColor: '#2E5E86',
-//     startDate: '2025-09-22',
-//     endDate: '2025-09-28',  // week beginning Sept 22 per ATP calendar :contentReference[oaicite:8]{index=8}
-//   },
-//   {
-//     name: 'Japan Open (Tokyo)',
-//     tour: 'ATP 500',
-//     innerColor: '#4169E1',
-//     outerColor: '#2C4B9B',
-//     startDate: '2025-09-22',
-//     endDate: '2025-09-28',  // same week as China Open :contentReference[oaicite:9]{index=9}
-//   },
-//   {
-//     name: 'Shanghai Masters',
-//     tour: 'ATP Masters 1000',
-//     innerColor: '#5B92E5',
-//     outerColor: '#426BA9',
-//     startDate: '2025-10-01',
-//     endDate: '2025-10-08',  // week of Oct 1–7 per calendar :contentReference[oaicite:10]{index=10}
-//   },
-//   {
-//     name: 'Paris Masters',
-//     tour: 'ATP Masters 1000',
-//     innerColor: '#3B3B98',
-//     outerColor: '#2F2F73',
-//     startDate: '2025-10-27',
-//     endDate: '2025-11-02',  // calendar for week 44/45 :contentReference[oaicite:11]{index=11}
-//   },
-//
-//   // Other Premier Events
-//   {
-//     name: 'Australian Open',
-//     tour: 'Grand Slam',
-//     innerColor: '#3E8ACC',
-//     outerColor: '#2A7ABF',
-//     startDate: '2025-01-12',
-//     endDate: '2025-01-26',  // first Grand Slam of year as per ATP calendar :contentReference[oaicite:12]{index=12}
-//   },
-//   {
-//     name: 'BNP Paribas Open (Indian Wells)',
-//     tour: 'ATP & WTA 1000',
-//     innerColor: '#5D3FD3',
-//     outerColor: '#3E8ACC',
-//     startDate: '2025-03-04',
-//     endDate: '2025-03-17',  // early March per ATP pdf :contentReference[oaicite:13]{index=13}
-//   },
-//   {
-//     name: 'Miami Open',
-//     tour: 'ATP & WTA 1000',
-//     innerColor: '#008080',
-//     outerColor: '#005f5f',
-//     startDate: '2025-03-18',
-//     endDate: '2025-03-31',  // following Indian Wells :contentReference[oaicite:14]{index=14}
-//   },
-//   {
-//     name: 'Nitto ATP Finals',
-//     tour: 'ATP Finals',
-//     innerColor: '#2E3B4E',
-//     outerColor: '#202936',
-//     startDate: '2025-11-09',
-//     endDate: '2025-11-16',  // ATP Finals week per calendar :contentReference[oaicite:15]{index=15}
-//   },
-//   {
-//     name: 'Laver Cup',
-//     tour: 'Team Event',
-//     innerColor: '#0C0C0C',
-//     outerColor: '#1C1C1C',
-//     startDate: '2025-09-15',
-//     endDate: '2025-09-20',  // Laver Cup week per ATP calendar :contentReference[oaicite:16]{index=16}
-//   },
-// ];
+  startDate: string; // Format: YYYY-MM-DD
+  endDate: string;
 
+  court: {
+    innerColor: string; // Used for UI surface color
+    outerColor: string; // Used for UI border color
+    surface: CourtSurface; // Add an explicit surface type for filtering/styling
+    surfaceText?: string; // Optional description (e.g., "Indoor Hard", "Green Clay")
+  };
 
-export const tournaments: Tournament[] = [
-  // Team Events
-  {
-    name: 'United Cup',
-    tour: 'Team Event',
-    innerColor: '#FFD700',
-    outerColor: '#FFCA00',
-    startDate: '2024-12-27',
-    endDate: '2025-01-05',
-  },
+  location: {
+    city: string;
+    country: string;
+  };
 
-  // Australian swing & early hard
-  {
-    name: 'Brisbane International',
-    tour: 'ATP 250',
-    innerColor: '#89CFF0',
-    outerColor: '#70A1B3',
-    startDate: '2024-12-29',
-    endDate: '2025-01-05',
-  },
-  {
-    name: 'Hong Kong Tennis Open',
-    tour: 'ATP 250',
-    innerColor: '#4682B4',
-    outerColor: '#315f86',
-    startDate: '2024-12-30',
-    endDate: '2025-01-05',
-  },
-  {
-    name: 'Adelaide International',
-    tour: 'ATP 250',
-    innerColor: '#1E90FF',
-    outerColor: '#1C7CD6',
-    startDate: '2025-01-06',
-    endDate: '2025-01-11',
-  },
-  {
-    name: 'ASB Classic (Auckland)',
-    tour: 'ATP 250',
-    innerColor: '#1E90FF',
-    outerColor: '#1874CD',
-    startDate: '2025-01-06',
-    endDate: '2025-01-11',
-  },
-  {
-    name: 'Australian Open',
-    tour: 'Grand Slam',
-    innerColor: '#3E8ACC',
-    outerColor: '#2A7ABF',
-    startDate: '2025-01-12',
-    endDate: '2025-01-26',
-  },
+  links: {
+    atp?: string; // Official ATP page
+    wta?: string; // Official WTA page
+    officialSite?: string; // Optional — event website
+  };
+}
 
-  // February hard indoor / South American clay
-  {
-    name: 'Open Occitanie (Montpellier)',
-    tour: 'ATP 250',
-    innerColor: '#708090',
-    outerColor: '#546A7B',
-    startDate: '2025-01-27',
-    endDate: '2025-02-02',
-  },
-  {
-    name: 'Dallas Open',
-    tour: 'ATP 500',
-    innerColor: '#00008B',
-    outerColor: '#00006B',
-    startDate: '2025-02-03',
-    endDate: '2025-02-09',
-  },
-  {
-    name: 'Rotterdam Open',
-    tour: 'ATP 500',
-    innerColor: '#000080',
-    outerColor: '#000060',
-    startDate: '2025-02-03',
-    endDate: '2025-02-09',
-  },
-  {
-    name: 'Open 13 Provence (Marseille)',
-    tour: 'ATP 250',
-    innerColor: '#4169E1',
-    outerColor: '#3058B3',
-    startDate: '2025-02-10',
-    endDate: '2025-02-16',
-  },
-  {
-    name: 'Delray Beach Open',
-    tour: 'ATP 250',
-    innerColor: '#5F9EA0',
-    outerColor: '#4A7A81',
-    startDate: '2025-02-10',
-    endDate: '2025-02-16',
-  },
-  {
-    name: 'Argentina Open (Buenos Aires)',
-    tour: 'ATP 250',
-    innerColor: '#CD5C5C',
-    outerColor: '#B34747',
-    startDate: '2025-02-10',
-    endDate: '2025-02-16',
-  },
-  {
-    name: 'Qatar ExxonMobil Open (Doha)',
-    tour: 'ATP 500',
-    innerColor: '#008B8B',
-    outerColor: '#006F6F',
-    startDate: '2025-02-17',
-    endDate: '2025-02-22',
-  },
-  {
-    name: 'Rio Open',
-    tour: 'ATP 500',
-    innerColor: '#C1440E',
-    outerColor: '#9C3B0E',
-    startDate: '2025-02-17',
-    endDate: '2025-02-23',
-  },
-  {
-    name: 'Dubai Duty Free Championships',
-    tour: 'ATP 500',
-    innerColor: '#4682B4',
-    outerColor: '#315f86',
-    startDate: '2025-02-24',
-    endDate: '2025-03-01',
-  },
-  {
-    name: 'Acapulco (Mexican Open)',
-    tour: 'ATP 500',
-    innerColor: '#1E90FF',
-    outerColor: '#1874CD',
-    startDate: '2025-02-24',
-    endDate: '2025-03-01',
-  },
-  {
-    name: 'Chile Open (Santiago)',
-    tour: 'ATP 250',
-    innerColor: '#CD5C5C',
-    outerColor: '#B34747',
-    startDate: '2025-02-24',
-    endDate: '2025-03-02',
-  },
+export const tournamentsNext: TournamentNext[] = [
 
-  // Masters & US clay
-  {
-    name: 'BNP Paribas Open (Indian Wells)',
-    tour: 'ATP & WTA 1000',
-    innerColor: '#5D3FD3',
-    outerColor: '#3E8ACC',
-    startDate: '2025-03-05',
-    endDate: '2025-03-16',
-  },
-  {
-    name: 'Miami Open',
-    tour: 'ATP & WTA 1000',
-    innerColor: '#008080',
-    outerColor: '#005f5f',
-    startDate: '2025-03-19',
-    endDate: '2025-03-30',
-  },
-  {
-    name: 'Houston (U.S. Men`s Clay Court Championship)',
-    tour: 'ATP 250',
-    innerColor: '#C1440E',
-    outerColor: '#9C3B0E',
-    startDate: '2025-03-31',
-    endDate: '2025-04-06',
-  },
-
-// European clay
-  {
-    name: 'Rolex Monte‑Carlo Masters',
-    tour: 'ATP Masters 1000',
-    innerColor: '#B95E42',
-    outerColor: '#A4503A',
-    startDate: '2025-04-06',
-    endDate: '2025-04-13',
-  },
-  {
-    name: 'Barcelona Open',
-    tour: 'ATP 500',
-    innerColor: '#CD5C5C',
-    outerColor: '#B34747',
-    startDate: '2025-04-14',
-    endDate: '2025-04-20',
-  },
-  {
-    name: 'Munich (BMW Open)',
-    tour: 'ATP 500',
-    innerColor: '#CD5C5C',
-    outerColor: '#A94A2F',
-    startDate: '2025-04-14',
-    endDate: '2025-04-20',
-  },
-  {
-    name: 'Madrid Open',
-    tour: 'ATP & WTA 1000',
-    innerColor: '#E34234',
-    outerColor: '#C43022',
-    startDate: '2025-04-23',
-    endDate: '2025-05-04',
-  },
-  {
-    name: 'Internazionali BNL d’Italia (Rome)',
-    tour: 'ATP & WTA 1000',
-    innerColor: '#C1440E',
-    outerColor: '#9C3B0E',
-    startDate: '2025-05-07',
-    endDate: '2025-05-18',
-  },
-  {
-    name: 'Hamburg Open',
-    tour: 'ATP 500',
-    innerColor: '#C45A3A',
-    outerColor: '#A94A2F',
-    startDate: '2025-05-18',
-    endDate: '2025-05-24',
-  },
-  {
-    name: 'Geneva Open',
-    tour: 'ATP 250',
-    innerColor: '#CD5C5C',
-    outerColor: '#B34747',
-    startDate: '2025-05-18',
-    endDate: '2025-05-24',
-  },
-  {
-    name: 'Roland Garros',
-    tour: 'Grand Slam',
-    innerColor: '#D46A4A',
-    outerColor: '#BF5B3F',
-    startDate: '2025-05-25',
-    endDate: '2025-06-08',
-  },
-
-// Grass season
-  {
-    name: 'Stuttgart BOSS OPEN',
-    tour: 'ATP 250',
-    innerColor: '#3CB371',
-    outerColor: '#2E8B57',
-    startDate: '2025-06-09',
-    endDate: '2025-06-15',
-  },
-  {
-    name: 'Libema Open (Hertogenbosch)',
-    tour: 'ATP 250',
-    innerColor: '#3CB371',
-    outerColor: '#2E8B57',
-    startDate: '2025-06-09',
-    endDate: '2025-06-15',
-  },
-  {
-    name: 'Queen’s Club Championships (HSBC)',
-    tour: 'ATP & WTA 500',
-    innerColor: '#2E8B57',
-    outerColor: '#246B45',
-    startDate: '2025-06-16',
-    endDate: '2025-06-22',
-  },
-  {
-    name: 'Halle (Terra Wortmann Open)',
-    tour: 'ATP 500',
-    innerColor: '#2E8B57',
-    outerColor: '#246B45',
-    startDate: '2025-06-16',
-    endDate: '2025-06-22',
-  },
-  {
-    name: 'Mallorca Championships',
-    tour: 'ATP 250',
-    innerColor: '#3CB371',
-    outerColor: '#2E8B57',
-    startDate: '2025-06-22',
-    endDate: '2025-06-28',
-  },
-  {
-    name: 'Eastbourne International',
-    tour: 'ATP & WTA 250',
-    innerColor: '#3CB371',
-    outerColor: '#2E8B57',
-    startDate: '2025-06-23',
-    endDate: '2025-06-28',
-  },
-  {
-    name: 'Wimbledon',
-    tour: 'Grand Slam',
-    innerColor: '#3A7D2A',
-    outerColor: '#336F26',
-    startDate: '2025-06-30',
-    endDate: '2025-07-13',
-  },
-
-// Summer hardcourt North America
-  {
-    name: 'Los Cabos Open',
-    tour: 'ATP 250',
-    innerColor: '#1E90FF',
-    outerColor: '#1C7CD6',
-    startDate: '2025-07-14',
-    endDate: '2025-07-20',
-  },
-  {
-    name: 'Nordea Open (Båstad / Swedish Open)',
-    tour: 'ATP 250',
-    innerColor: '#CD5C5C',
-    outerColor: '#B34747',
-    startDate: '2025-07-07',
-    endDate: '2025-07-20',
-  },
-  {
-    name: 'Generali Open Kitzbühel',
-    tour: 'ATP 250',
-    innerColor: '#CD5C5C',
-    outerColor: '#A94A2F',
-    startDate: '2025-07-20',
-    endDate: '2025-07-26',
-  },
-  {
-    name: 'National Bank Open',
-    tour: 'ATP & WTA 1000',
-    innerColor: '#2A52BE',
-    outerColor: '#22439E',
-    startDate: '2025-07-27',
-    endDate: '2025-08-07',
-  },
-  {
-    name: 'Cincinnati Open',
-    tour: 'ATP & WTA 1000',
-    innerColor: '#7B429B',
-    outerColor: '#3675B3',
-    startDate: '2025-08-07',
-    endDate: '2025-08-18',
-  },
-  {
-    name: 'Winston‑Salem Open',
-    tour: 'ATP 250',
-    innerColor: '#4169E1',
-    outerColor: '#3558BA',
-    startDate: '2025-08-17',
-    endDate: '2025-08-23',
-  },
-  {
-    name: 'US Open',
-    tour: 'Grand Slam',
-    innerColor: '#0062A8',
-    outerColor: '#008080',
-    startDate: '2025-08-24',
-    endDate: '2025-09-07',
-  },
-
-// Asian swing & indoor hard
-  {
-    name: 'Chengdu Open',
-    tour: 'ATP 250',
-    innerColor: '#4682B4',
-    outerColor: '#2E5E86',
-    startDate: '2025-09-17',
-    endDate: '2025-09-23',
-  },
-  {
-    name: 'Japan Open (Tokyo)',
-    tour: 'ATP 500',
-    innerColor: '#4169E1',
-    outerColor: '#2C4B9B',
-    startDate: '2025-09-24',
-    endDate: '2025-09-28',
-  },
-  {
-    name: 'China Open (Beijing)',
-    tour: 'ATP 500',
-    innerColor: '#4682B4',
-    outerColor: '#2E5E86',
-    startDate: '2025-09-24',
-    endDate: '2025-09-28',
-  },
-  {
-    name: 'Shanghai Masters',
-    tour: 'ATP Masters 1000',
-    innerColor: '#5B92E5',
-    outerColor: '#426BA9',
-    startDate: '2025-10-01',
-    endDate: '2025-10-08',
-  },
-  {
-    name: 'Vienna (Erste Bank Open)',
-    tour: 'ATP 500',
-    innerColor: '#708090',
-    outerColor: '#546A7B',
-    startDate: '2025-10-13',
-    endDate: '2025-10-20',
-  },
-  {
-    name: 'Swiss Indoors (Basel)',
-    tour: 'ATP 500',
-    innerColor: '#708090',
-    outerColor: '#546A7B',
-    startDate: '2025-10-13',
-    endDate: '2025-10-20',
-  },
-  {
-    name: 'Almaty Open',
-    tour: 'ATP 250',
-    innerColor: '#708090',
-    outerColor: '#546A7B',
-    startDate: '2025-10-20',
-    endDate: '2025-10-26',
-  },
-  {
-    name: 'Paris Masters',
-    tour: 'ATP Masters 1000',
-    innerColor: '#3B3B98',
-    outerColor: '#2F2F73',
-    startDate: '2025-10-27',
-    endDate: '2025-11-02',
-  },
-  {
-    name: 'Belgrade Open',
-    tour: 'ATP 250',
-    innerColor: '#708090',
-    outerColor: '#546A7B',
-    startDate: '2025-11-02',
-    endDate: '2025-11-08',
-  },
-  {
-    name: 'Moselle Open (Metz)',
-    tour: 'ATP 250',
-    innerColor: '#708090',
-    outerColor: '#546A7B',
-    startDate: '2025-11-02',
-    endDate: '2025-11-08',
-  },
-
-// Season finales
-  {
-    name: 'Nitto ATP Finals',
-    tour: 'ATP Finals',
-    innerColor: '#2E3B4E',
-    outerColor: '#202936',
-    startDate: '2025-11-09',
-    endDate: '2025-11-16',
-  },
-
-  {
-    name: 'Laver Cup',
-    tour: 'Team Event',
-    innerColor: '#0C0C0C',
-    outerColor: '#1C1C1C',
-    startDate: '2025-09-23',
-    endDate: '2025-09-28',
-  },
-];
+]
 
 export const t: Tournament[] =
   [
@@ -867,7 +240,7 @@ export const t: Tournament[] =
       outerColor: '#87A182',
       startDate: '2025-02-24',
       endDate: '2025-03-01',
-      text: 'Dubai',
+      surfaceText: 'Dubai',
     },
     {
       'name': 'Acapulco, Mexico',
@@ -1144,7 +517,7 @@ export const t: Tournament[] =
       'outerColor': '#928687',
       'startDate': '2025-07-14',
       'endDate': '2025-07-19',
-      text: 'Los Cabos',
+      surfaceText: 'Los Cabos',
     },
     {
       'name': 'Gstaad, Switzerland',
@@ -1193,7 +566,7 @@ export const t: Tournament[] =
       'outerColor': '#86A076',
       'startDate': '2025-07-21',
       'endDate': '2025-07-27',
-      text: 'Washington, D.C.',
+      surfaceText: 'Washington, D.C.',
     },
     {
       'name': 'Kitzbuhel, Austria',
@@ -1218,7 +591,7 @@ export const t: Tournament[] =
       'outerColor': '#8B9E78',
       'startDate': '2025-07-27',
       'endDate': '2025-08-07',
-      text: 'Toronto',
+      surfaceText: 'Toronto',
     },
     {
       'name': 'Cincinnati, United States',
@@ -1473,3 +846,665 @@ export const t: Tournament[] =
       'endDate': '2025-12-21',
     },
   ];
+
+
+// --- Tournament Data ---
+// const tournaments: Tournament[] = [
+//   { name: 'Australian Open', tour: 'Grand Slam', innerColor: '#3E8ACC', outerColor: '#2A7ABF' },
+//   { name: 'BNP Paribas Open', tour: 'ATP & WTA 1000', innerColor: '#5D3FD3', outerColor: '#3E8ACC' },
+//   { name: 'Miami Open', tour: 'ATP & WTA 1000', innerColor: '#008080', outerColor: '#005f5f' },
+//   { name: 'Rolex Monte-Carlo', tour: 'ATP Masters 1000', innerColor: '#B95E42', outerColor: '#A4503A' },
+//   { name: 'Mutua Madrid Open', tour: 'ATP & WTA 1000', innerColor: '#E34234', outerColor: '#C43022' },
+//   { name: 'Roland-Garros', tour: 'Grand Slam', innerColor: '#D46A4A', outerColor: '#BF5B3F' },
+//   { name: 'Wimbledon', tour: 'Grand Slam', innerColor: '#3A7D2A', outerColor: '#336F26' },
+//   { name: 'National Bank Open', tour: 'ATP & WTA 1000', innerColor: '#2A52BE', outerColor: '#22439E' },
+//   { name: 'US Open', tour: 'Grand Slam', innerColor: '#0062A8', outerColor: '#008080' },
+//   { name: 'Nitto ATP Finals', tour: 'ATP Finals', innerColor: '#2E3B4E', outerColor: '#202936' },
+// ];
+
+// const tournaments: Tournament[] = [
+//   // Spring Clay Season
+//   { name: 'Rolex Monte-Carlo', tour: 'ATP Masters 1000', innerColor: '#B95E42', outerColor: '#A4503A' },
+//   { name: 'Mutua Madrid Open', tour: 'ATP & WTA 1000', innerColor: '#E34234', outerColor: '#C43022' },
+//   { name: 'Roland-Garros', tour: 'Grand Slam', innerColor: '#D46A4A', outerColor: '#BF5B3F' },
+//   { name: 'Internazionali BNL d’Italia (Rome)', tour: 'ATP & WTA 1000', innerColor: '#C1440E', outerColor: '#9C3B0E' },
+//   { name: 'Barcelona Open', tour: 'ATP 500', innerColor: '#CD5C5C', outerColor: '#B34747' },
+//
+//   // Summer Grass & Clay Season
+//   { name: 'Wimbledon', tour: 'Grand Slam', innerColor: '#3A7D2A', outerColor: '#336F26' },
+//   { name: 'Hamburg European Open', tour: 'ATP 500', innerColor: '#C45A3A', outerColor: '#A94A2F' },
+//   { name: 'Queen’s Club Championships', tour: 'ATP 500', innerColor: '#2E8B57', outerColor: '#246B45' },
+//   { name: 'Eastbourne International', tour: 'ATP & WTA 250', innerColor: '#3CB371', outerColor: '#2E8B57' },
+//   { name: 'Bad Homburg Open', tour: 'WTA 250', innerColor: '#228B22', outerColor: '#1E7B1E' },
+//
+//   // Summer Hard Court Season
+//   { name: 'National Bank Open', tour: 'ATP & WTA 1000', innerColor: '#2A52BE', outerColor: '#22439E' },
+//   { name: 'Cincinnati Open', tour: 'ATP & WTA 1000', innerColor: '#7B429B', outerColor: '#3675B3' },
+//   { name: 'US Open', tour: 'Grand Slam', innerColor: '#0062A8', outerColor: '#008080' },
+//   { name: 'Atlanta Open', tour: 'ATP 250', innerColor: '#1E90FF', outerColor: '#1C7CD6' },
+//   { name: 'Winston-Salem Open', tour: 'ATP 250', innerColor: '#4169E1', outerColor: '#3558BA' },
+//
+//   // Fall Indoor & Asian Hard Court Season
+//   { name: 'China Open (Beijing)', tour: 'ATP & WTA 500', innerColor: '#4682B4', outerColor: '#2E5E86' },
+//   { name: 'Shanghai Masters', tour: 'ATP Masters 1000', innerColor: '#5B92E5', outerColor: '#426BA9' },
+//   { name: 'Paris Masters', tour: 'ATP Masters 1000', innerColor: '#3B3B98', outerColor: '#2F2F73' },
+//   { name: 'Zhuhai Championships', tour: 'ATP 250', innerColor: '#3E6FB0', outerColor: '#30598F' },
+//   { name: 'Tokyo Open (Rakuten Japan)', tour: 'ATP 500', innerColor: '#4169E1', outerColor: '#2C4B9B' },
+//
+//   // Other Major Tournaments
+//   { name: 'Australian Open', tour: 'Grand Slam', innerColor: '#3E8ACC', outerColor: '#2A7ABF' },
+//   { name: 'BNP Paribas Open', tour: 'ATP & WTA 1000', innerColor: '#5D3FD3', outerColor: '#3E8ACC' },
+//   { name: 'Miami Open', tour: 'ATP & WTA 1000', innerColor: '#008080', outerColor: '#005f5f' },
+//   { name: 'Nitto ATP Finals', tour: 'ATP Finals', innerColor: '#2E3B4E', outerColor: '#202936' },
+//   { name: 'Laver Cup', tour: 'Team Event', innerColor: '#0C0C0C', outerColor: '#1C1C1C' },
+// ];
+
+// const tournaments: Tournament[] = [
+//   // Spring Clay Season
+//   {
+//     name: 'Rolex Monte‑Carlo Masters',
+//     tour: 'ATP Masters 1000',
+//     innerColor: '#B95E42',
+//     outerColor: '#A4503A',
+//     startDate: '2025-04-06',
+//     endDate: '2025-04-13',
+//   },
+//   {
+//     name: 'Mutua Madrid Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#E34234',
+//     outerColor: '#C43022',
+//     startDate: '2025-04-21',  // official sources vary: confirmed April 21–May 4 :contentReference[oaicite:1]{index=1}
+//     endDate: '2025-05-04',
+//   },
+//   {
+//     name: 'Roland‑Garros (French Open)',
+//     tour: 'Grand Slam',
+//     innerColor: '#D46A4A',
+//     outerColor: '#BF5B3F',
+//     startDate: '2025-05-25',
+//     endDate: '2025-06-08',
+//   },
+//
+//   // Summer Grass Season
+//   {
+//     name: 'Queen’s Club Championships',
+//     tour: 'ATP 500',
+//     innerColor: '#2E8B57',
+//     outerColor: '#246B45',
+//     startDate: '2025-06-16',
+//     endDate: '2025-06-22',  // per ATP grass calendar :contentReference[oaicite:2]{index=2}
+//   },
+//   {
+//     name: 'Eastbourne International',
+//     tour: 'ATP & WTA 250 / 500',
+//     innerColor: '#3CB371',
+//     outerColor: '#2E8B57',
+//     startDate: '2025-06-22',
+//     endDate: '2025-06-28',  // combined week per grass schedule list :contentReference[oaicite:3]{index=3}
+//   },
+//   {
+//     name: 'Wimbledon',
+//     tour: 'Grand Slam',
+//     innerColor: '#3A7D2A',
+//     outerColor: '#336F26',
+//     startDate: '2025-06-30',
+//     endDate: '2025-07-13',  // confirmed via Reuters and The Sun :contentReference[oaicite:4]{index=4}
+//   },
+//
+//   // Summer Hard Court Season
+//   {
+//     name: 'National Bank Open (Toronto/Montreal)',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#2A52BE',
+//     outerColor: '#22439E',
+//     startDate: '2025-07-27',
+//     endDate: '2025-08-03',  // week 31/32 per calendar :contentReference[oaicite:5]{index=5}
+//   },
+//   {
+//     name: 'Cincinnati Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#7B429B',
+//     outerColor: '#3675B3',
+//     startDate: '2025-08-07',
+//     endDate: '2025-08-17',  // includes final week starting Aug 11, ends Aug 17–24 per calendar :contentReference[oaicite:6]{index=6}
+//   },
+//   {
+//     name: 'US Open',
+//     tour: 'Grand Slam',
+//     innerColor: '#0062A8',
+//     outerColor: '#008080',
+//     startDate: '2025-08-24',
+//     endDate: '2025-09-07',  // US Open week from August 24 to early September :contentReference[oaicite:7]{index=7}
+//   },
+//
+//   // Fall Hard Court / Indoor Season
+//   {
+//     name: 'China Open (Beijing)',
+//     tour: 'ATP & WTA 500',
+//     innerColor: '#4682B4',
+//     outerColor: '#2E5E86',
+//     startDate: '2025-09-22',
+//     endDate: '2025-09-28',  // week beginning Sept 22 per ATP calendar :contentReference[oaicite:8]{index=8}
+//   },
+//   {
+//     name: 'Japan Open (Tokyo)',
+//     tour: 'ATP 500',
+//     innerColor: '#4169E1',
+//     outerColor: '#2C4B9B',
+//     startDate: '2025-09-22',
+//     endDate: '2025-09-28',  // same week as China Open :contentReference[oaicite:9]{index=9}
+//   },
+//   {
+//     name: 'Shanghai Masters',
+//     tour: 'ATP Masters 1000',
+//     innerColor: '#5B92E5',
+//     outerColor: '#426BA9',
+//     startDate: '2025-10-01',
+//     endDate: '2025-10-08',  // week of Oct 1–7 per calendar :contentReference[oaicite:10]{index=10}
+//   },
+//   {
+//     name: 'Paris Masters',
+//     tour: 'ATP Masters 1000',
+//     innerColor: '#3B3B98',
+//     outerColor: '#2F2F73',
+//     startDate: '2025-10-27',
+//     endDate: '2025-11-02',  // calendar for week 44/45 :contentReference[oaicite:11]{index=11}
+//   },
+//
+//   // Other Premier Events
+//   {
+//     name: 'Australian Open',
+//     tour: 'Grand Slam',
+//     innerColor: '#3E8ACC',
+//     outerColor: '#2A7ABF',
+//     startDate: '2025-01-12',
+//     endDate: '2025-01-26',  // first Grand Slam of year as per ATP calendar :contentReference[oaicite:12]{index=12}
+//   },
+//   {
+//     name: 'BNP Paribas Open (Indian Wells)',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#5D3FD3',
+//     outerColor: '#3E8ACC',
+//     startDate: '2025-03-04',
+//     endDate: '2025-03-17',  // early March per ATP pdf :contentReference[oaicite:13]{index=13}
+//   },
+//   {
+//     name: 'Miami Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#008080',
+//     outerColor: '#005f5f',
+//     startDate: '2025-03-18',
+//     endDate: '2025-03-31',  // following Indian Wells :contentReference[oaicite:14]{index=14}
+//   },
+//   {
+//     name: 'Nitto ATP Finals',
+//     tour: 'ATP Finals',
+//     innerColor: '#2E3B4E',
+//     outerColor: '#202936',
+//     startDate: '2025-11-09',
+//     endDate: '2025-11-16',  // ATP Finals week per calendar :contentReference[oaicite:15]{index=15}
+//   },
+//   {
+//     name: 'Laver Cup',
+//     tour: 'Team Event',
+//     innerColor: '#0C0C0C',
+//     outerColor: '#1C1C1C',
+//     startDate: '2025-09-15',
+//     endDate: '2025-09-20',  // Laver Cup week per ATP calendar :contentReference[oaicite:16]{index=16}
+//   },
+// ];
+
+
+// export const tournaments: Tournament[] = [
+//   // Team Events
+//   {
+//     name: 'United Cup',
+//     tour: 'Team Event',
+//     innerColor: '#FFD700',
+//     outerColor: '#FFCA00',
+//     startDate: '2024-12-27',
+//     endDate: '2025-01-05',
+//   },
+//
+//   // Australian swing & early hard
+//   {
+//     name: 'Brisbane International',
+//     tour: 'ATP 250',
+//     innerColor: '#89CFF0',
+//     outerColor: '#70A1B3',
+//     startDate: '2024-12-29',
+//     endDate: '2025-01-05',
+//   },
+//   {
+//     name: 'Hong Kong Tennis Open',
+//     tour: 'ATP 250',
+//     innerColor: '#4682B4',
+//     outerColor: '#315f86',
+//     startDate: '2024-12-30',
+//     endDate: '2025-01-05',
+//   },
+//   {
+//     name: 'Adelaide International',
+//     tour: 'ATP 250',
+//     innerColor: '#1E90FF',
+//     outerColor: '#1C7CD6',
+//     startDate: '2025-01-06',
+//     endDate: '2025-01-11',
+//   },
+//   {
+//     name: 'ASB Classic (Auckland)',
+//     tour: 'ATP 250',
+//     innerColor: '#1E90FF',
+//     outerColor: '#1874CD',
+//     startDate: '2025-01-06',
+//     endDate: '2025-01-11',
+//   },
+//   {
+//     name: 'Australian Open',
+//     tour: 'Grand Slam',
+//     innerColor: '#3E8ACC',
+//     outerColor: '#2A7ABF',
+//     startDate: '2025-01-12',
+//     endDate: '2025-01-26',
+//   },
+//
+//   // February hard indoor / South American clay
+//   {
+//     name: 'Open Occitanie (Montpellier)',
+//     tour: 'ATP 250',
+//     innerColor: '#708090',
+//     outerColor: '#546A7B',
+//     startDate: '2025-01-27',
+//     endDate: '2025-02-02',
+//   },
+//   {
+//     name: 'Dallas Open',
+//     tour: 'ATP 500',
+//     innerColor: '#00008B',
+//     outerColor: '#00006B',
+//     startDate: '2025-02-03',
+//     endDate: '2025-02-09',
+//   },
+//   {
+//     name: 'Rotterdam Open',
+//     tour: 'ATP 500',
+//     innerColor: '#000080',
+//     outerColor: '#000060',
+//     startDate: '2025-02-03',
+//     endDate: '2025-02-09',
+//   },
+//   {
+//     name: 'Open 13 Provence (Marseille)',
+//     tour: 'ATP 250',
+//     innerColor: '#4169E1',
+//     outerColor: '#3058B3',
+//     startDate: '2025-02-10',
+//     endDate: '2025-02-16',
+//   },
+//   {
+//     name: 'Delray Beach Open',
+//     tour: 'ATP 250',
+//     innerColor: '#5F9EA0',
+//     outerColor: '#4A7A81',
+//     startDate: '2025-02-10',
+//     endDate: '2025-02-16',
+//   },
+//   {
+//     name: 'Argentina Open (Buenos Aires)',
+//     tour: 'ATP 250',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#B34747',
+//     startDate: '2025-02-10',
+//     endDate: '2025-02-16',
+//   },
+//   {
+//     name: 'Qatar ExxonMobil Open (Doha)',
+//     tour: 'ATP 500',
+//     innerColor: '#008B8B',
+//     outerColor: '#006F6F',
+//     startDate: '2025-02-17',
+//     endDate: '2025-02-22',
+//   },
+//   {
+//     name: 'Rio Open',
+//     tour: 'ATP 500',
+//     innerColor: '#C1440E',
+//     outerColor: '#9C3B0E',
+//     startDate: '2025-02-17',
+//     endDate: '2025-02-23',
+//   },
+//   {
+//     name: 'Dubai Duty Free Championships',
+//     tour: 'ATP 500',
+//     innerColor: '#4682B4',
+//     outerColor: '#315f86',
+//     startDate: '2025-02-24',
+//     endDate: '2025-03-01',
+//   },
+//   {
+//     name: 'Acapulco (Mexican Open)',
+//     tour: 'ATP 500',
+//     innerColor: '#1E90FF',
+//     outerColor: '#1874CD',
+//     startDate: '2025-02-24',
+//     endDate: '2025-03-01',
+//   },
+//   {
+//     name: 'Chile Open (Santiago)',
+//     tour: 'ATP 250',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#B34747',
+//     startDate: '2025-02-24',
+//     endDate: '2025-03-02',
+//   },
+//
+//   // Masters & US clay
+//   {
+//     name: 'BNP Paribas Open (Indian Wells)',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#5D3FD3',
+//     outerColor: '#3E8ACC',
+//     startDate: '2025-03-05',
+//     endDate: '2025-03-16',
+//   },
+//   {
+//     name: 'Miami Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#008080',
+//     outerColor: '#005f5f',
+//     startDate: '2025-03-19',
+//     endDate: '2025-03-30',
+//   },
+//   {
+//     name: 'Houston (U.S. Men`s Clay Court Championship)',
+//     tour: 'ATP 250',
+//     innerColor: '#C1440E',
+//     outerColor: '#9C3B0E',
+//     startDate: '2025-03-31',
+//     endDate: '2025-04-06',
+//   },
+//
+// // European clay
+//   {
+//     name: 'Rolex Monte‑Carlo Masters',
+//     tour: 'ATP Masters 1000',
+//     innerColor: '#B95E42',
+//     outerColor: '#A4503A',
+//     startDate: '2025-04-06',
+//     endDate: '2025-04-13',
+//   },
+//   {
+//     name: 'Barcelona Open',
+//     tour: 'ATP 500',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#B34747',
+//     startDate: '2025-04-14',
+//     endDate: '2025-04-20',
+//   },
+//   {
+//     name: 'Munich (BMW Open)',
+//     tour: 'ATP 500',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#A94A2F',
+//     startDate: '2025-04-14',
+//     endDate: '2025-04-20',
+//   },
+//   {
+//     name: 'Madrid Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#E34234',
+//     outerColor: '#C43022',
+//     startDate: '2025-04-23',
+//     endDate: '2025-05-04',
+//   },
+//   {
+//     name: 'Internazionali BNL d’Italia (Rome)',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#C1440E',
+//     outerColor: '#9C3B0E',
+//     startDate: '2025-05-07',
+//     endDate: '2025-05-18',
+//   },
+//   {
+//     name: 'Hamburg Open',
+//     tour: 'ATP 500',
+//     innerColor: '#C45A3A',
+//     outerColor: '#A94A2F',
+//     startDate: '2025-05-18',
+//     endDate: '2025-05-24',
+//   },
+//   {
+//     name: 'Geneva Open',
+//     tour: 'ATP 250',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#B34747',
+//     startDate: '2025-05-18',
+//     endDate: '2025-05-24',
+//   },
+//   {
+//     name: 'Roland Garros',
+//     tour: 'Grand Slam',
+//     innerColor: '#D46A4A',
+//     outerColor: '#BF5B3F',
+//     startDate: '2025-05-25',
+//     endDate: '2025-06-08',
+//   },
+//
+// // Grass season
+//   {
+//     name: 'Stuttgart BOSS OPEN',
+//     tour: 'ATP 250',
+//     innerColor: '#3CB371',
+//     outerColor: '#2E8B57',
+//     startDate: '2025-06-09',
+//     endDate: '2025-06-15',
+//   },
+//   {
+//     name: 'Libema Open (Hertogenbosch)',
+//     tour: 'ATP 250',
+//     innerColor: '#3CB371',
+//     outerColor: '#2E8B57',
+//     startDate: '2025-06-09',
+//     endDate: '2025-06-15',
+//   },
+//   {
+//     name: 'Queen’s Club Championships (HSBC)',
+//     tour: 'ATP & WTA 500',
+//     innerColor: '#2E8B57',
+//     outerColor: '#246B45',
+//     startDate: '2025-06-16',
+//     endDate: '2025-06-22',
+//   },
+//   {
+//     name: 'Halle (Terra Wortmann Open)',
+//     tour: 'ATP 500',
+//     innerColor: '#2E8B57',
+//     outerColor: '#246B45',
+//     startDate: '2025-06-16',
+//     endDate: '2025-06-22',
+//   },
+//   {
+//     name: 'Mallorca Championships',
+//     tour: 'ATP 250',
+//     innerColor: '#3CB371',
+//     outerColor: '#2E8B57',
+//     startDate: '2025-06-22',
+//     endDate: '2025-06-28',
+//   },
+//   {
+//     name: 'Eastbourne International',
+//     tour: 'ATP & WTA 250',
+//     innerColor: '#3CB371',
+//     outerColor: '#2E8B57',
+//     startDate: '2025-06-23',
+//     endDate: '2025-06-28',
+//   },
+//   {
+//     name: 'Wimbledon',
+//     tour: 'Grand Slam',
+//     innerColor: '#3A7D2A',
+//     outerColor: '#336F26',
+//     startDate: '2025-06-30',
+//     endDate: '2025-07-13',
+//   },
+//
+// // Summer hardcourt North America
+//   {
+//     name: 'Los Cabos Open',
+//     tour: 'ATP 250',
+//     innerColor: '#1E90FF',
+//     outerColor: '#1C7CD6',
+//     startDate: '2025-07-14',
+//     endDate: '2025-07-20',
+//   },
+//   {
+//     name: 'Nordea Open (Båstad / Swedish Open)',
+//     tour: 'ATP 250',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#B34747',
+//     startDate: '2025-07-07',
+//     endDate: '2025-07-20',
+//   },
+//   {
+//     name: 'Generali Open Kitzbühel',
+//     tour: 'ATP 250',
+//     innerColor: '#CD5C5C',
+//     outerColor: '#A94A2F',
+//     startDate: '2025-07-20',
+//     endDate: '2025-07-26',
+//   },
+//   {
+//     name: 'National Bank Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#2A52BE',
+//     outerColor: '#22439E',
+//     startDate: '2025-07-27',
+//     endDate: '2025-08-07',
+//   },
+//   {
+//     name: 'Cincinnati Open',
+//     tour: 'ATP & WTA 1000',
+//     innerColor: '#7B429B',
+//     outerColor: '#3675B3',
+//     startDate: '2025-08-07',
+//     endDate: '2025-08-18',
+//   },
+//   {
+//     name: 'Winston‑Salem Open',
+//     tour: 'ATP 250',
+//     innerColor: '#4169E1',
+//     outerColor: '#3558BA',
+//     startDate: '2025-08-17',
+//     endDate: '2025-08-23',
+//   },
+//   {
+//     name: 'US Open',
+//     tour: 'Grand Slam',
+//     innerColor: '#0062A8',
+//     outerColor: '#008080',
+//     startDate: '2025-08-24',
+//     endDate: '2025-09-07',
+//   },
+//
+// // Asian swing & indoor hard
+//   {
+//     name: 'Chengdu Open',
+//     tour: 'ATP 250',
+//     innerColor: '#4682B4',
+//     outerColor: '#2E5E86',
+//     startDate: '2025-09-17',
+//     endDate: '2025-09-23',
+//   },
+//   {
+//     name: 'Japan Open (Tokyo)',
+//     tour: 'ATP 500',
+//     innerColor: '#4169E1',
+//     outerColor: '#2C4B9B',
+//     startDate: '2025-09-24',
+//     endDate: '2025-09-28',
+//   },
+//   {
+//     name: 'China Open (Beijing)',
+//     tour: 'ATP 500',
+//     innerColor: '#4682B4',
+//     outerColor: '#2E5E86',
+//     startDate: '2025-09-24',
+//     endDate: '2025-09-28',
+//   },
+//   {
+//     name: 'Shanghai Masters',
+//     tour: 'ATP Masters 1000',
+//     innerColor: '#5B92E5',
+//     outerColor: '#426BA9',
+//     startDate: '2025-10-01',
+//     endDate: '2025-10-08',
+//   },
+//   {
+//     name: 'Vienna (Erste Bank Open)',
+//     tour: 'ATP 500',
+//     innerColor: '#708090',
+//     outerColor: '#546A7B',
+//     startDate: '2025-10-13',
+//     endDate: '2025-10-20',
+//   },
+//   {
+//     name: 'Swiss Indoors (Basel)',
+//     tour: 'ATP 500',
+//     innerColor: '#708090',
+//     outerColor: '#546A7B',
+//     startDate: '2025-10-13',
+//     endDate: '2025-10-20',
+//   },
+//   {
+//     name: 'Almaty Open',
+//     tour: 'ATP 250',
+//     innerColor: '#708090',
+//     outerColor: '#546A7B',
+//     startDate: '2025-10-20',
+//     endDate: '2025-10-26',
+//   },
+//   {
+//     name: 'Paris Masters',
+//     tour: 'ATP Masters 1000',
+//     innerColor: '#3B3B98',
+//     outerColor: '#2F2F73',
+//     startDate: '2025-10-27',
+//     endDate: '2025-11-02',
+//   },
+//   {
+//     name: 'Belgrade Open',
+//     tour: 'ATP 250',
+//     innerColor: '#708090',
+//     outerColor: '#546A7B',
+//     startDate: '2025-11-02',
+//     endDate: '2025-11-08',
+//   },
+//   {
+//     name: 'Moselle Open (Metz)',
+//     tour: 'ATP 250',
+//     innerColor: '#708090',
+//     outerColor: '#546A7B',
+//     startDate: '2025-11-02',
+//     endDate: '2025-11-08',
+//   },
+//
+// // Season finales
+//   {
+//     name: 'Nitto ATP Finals',
+//     tour: 'ATP Finals',
+//     innerColor: '#2E3B4E',
+//     outerColor: '#202936',
+//     startDate: '2025-11-09',
+//     endDate: '2025-11-16',
+//   },
+//
+//   {
+//     name: 'Laver Cup',
+//     tour: 'Team Event',
+//     innerColor: '#0C0C0C',
+//     outerColor: '#1C1C1C',
+//     startDate: '2025-09-23',
+//     endDate: '2025-09-28',
+//   },
+// ];
