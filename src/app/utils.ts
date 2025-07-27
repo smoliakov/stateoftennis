@@ -2,7 +2,7 @@ import { Tournament } from '@/app/data/tournaments';
 
 export const generateSVGString = ({ court: { outerColor, innerColor, surfaceText } }: Tournament) => {
   return `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 400" aria-label="Tennis Court">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 380" aria-label="Tennis Court">
         <metadata>
           Source: https://stateoftennis.vercel.app
           License: © State of Tennis

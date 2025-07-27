@@ -9,7 +9,7 @@ interface TennisCourtIconProps extends IconProps {
 }
 
 const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({ innerColor, outerColor, text, className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 400" aria-label="Tennis Court" className={className}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 380" aria-label="Tennis Court" className={className}>
     <rect width="280" height="380" fill={outerColor} />
     <rect x="50" y="50" width="180" height="280" fill={innerColor} />
     <g fill="none" stroke="#FFFFFF" strokeWidth="5" transform="translate(50, 50)">
