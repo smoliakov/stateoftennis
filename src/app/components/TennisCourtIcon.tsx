@@ -20,6 +20,8 @@ const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({ innerColor, outerColo
       <line x1="25" y1="60" x2="155" y2="60" />
       <line x1="25" y1="220" x2="155" y2="220" />
       <line x1="90" y1="60" x2="90" y2="220" />
+      <line x1="90" y1="0" x2="90" y2="6" />
+      <line x1="90" y1="274" x2="90" y2="280" />
     </g>
     {text && (
       <text

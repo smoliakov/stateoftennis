@@ -716,12 +716,15 @@ export const tournaments: Tournament[] = [
     startDate: '2025-09-17',
     endDate: '2025-09-23',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#5A82B6',
+      outerColor: '#86A076',
       surface: 'Hard',
+      surfaceText: 'Chengdu 成都',
     },
     location: { city: 'Chengdu', country: 'China' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/chengdu/7581/overview',
+    },
   },
   {
     name: 'Hangzhou Open',
