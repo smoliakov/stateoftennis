@@ -7,7 +7,7 @@ import { getOngoingTournaments } from '@/app/utils';
 
 // SEO Metadata export for Next.js 15+
 export const metadata: Metadata = {
-  title: 'The Global State of Tennis 2025— Iconic Tournament Courts',
+  title: 'The Global State of Tennis 2025 — Iconic Tournament Courts',
   description:
     'Explore the world\'s most prestigious tennis tournament courts with detailed insights, stunning visuals, and real-time updates. Discover ATP, WTA, and ongoing tennis events globally on our sleek, fast, and SEO-optimized platform.',
   keywords:
