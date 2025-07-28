@@ -5,7 +5,6 @@ Website: https://stateoftennis.vercel.app
 A fun, open-source project that maps out the styles and surfaces of pro tennis tournaments across the season. Every
 tournament gets its own slick little SVG court, and you can see what’s happening live right now.
 
----
 
 ## 📦 Free to Use
 
@@ -23,16 +22,12 @@ Every tennis tournament has its own vibe — and the court is a big part of that
 
 Whether you're a tennis nerd, designer, or developer — this is for you for free.
 
----
-
 ## 🔍 Features
 
 - 🗓️ Live tournament tracker
 - 🧱 Court surface visualization
 - 🖼️ Free-to-use SVG icons
 - 💻 Open-source and hackable
-
----
 
 ## 🛠️ Getting Started
 
@@ -45,7 +40,7 @@ npm install
 npm run dev
 ```
 
-## 🤝 Contribute!
+## 🤝 Contribute
 
 Spotted a missing tournament? Want to improve the courts or add a feature?
 Pull requests are super welcome!

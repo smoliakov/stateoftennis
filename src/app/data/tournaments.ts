@@ -115,12 +115,16 @@ export const tournaments: Tournament[] = [
     startDate: '2025-01-12',
     endDate: '2025-01-26',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#4C75A3',
+      outerColor: '#367FC3',
       surface: 'Hard',
+      surfaceText: 'Melbourne',
     },
     location: { city: 'Melbourne', country: 'Australia' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/australian-open/580/overview',
+      wta: 'https://www.wtatennis.com/tournaments/australian-open',
+    },
   },
   {
     name: 'Open Sud de France',
@@ -452,15 +456,16 @@ export const tournaments: Tournament[] = [
     links: {},
   },
   {
-    name: 'Roland-Garros',
+    name: 'Roland Garros',
     tour: ['ATP', 'WTA'],
     points: 2000,
     startDate: '2025-05-25',
     endDate: '2025-06-08',
     court: {
-      innerColor: '#D9534F',
-      outerColor: '#B52B27',
+      innerColor: '#CD734E',
+      outerColor: '#CD734E',
       surface: 'Clay',
+      surfaceText: 'Roland Garros',
     },
     location: { city: 'Paris', country: 'France' },
     links: {},
@@ -725,6 +730,7 @@ export const tournaments: Tournament[] = [
       innerColor: '#5A82B6',
       outerColor: '#86A076',
       surface: 'Hard',
+      surfaceText: 'US Open',
     },
     location: { city: 'New York', country: 'USA' },
     links: {

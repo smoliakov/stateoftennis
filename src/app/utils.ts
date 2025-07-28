@@ -23,13 +23,15 @@ export const generateSVGString = ({ court: { outerColor, innerColor, surfaceText
         ${
     surfaceText
       ? `<text
-                x="140"
-                y="362"
-                text-anchor="middle"
-                fill="#ffffff"
-                font-size="16"
-                font-family="sans-serif"
-                font-weight="bold">${surfaceText}</text>`
+                  x="140"
+                  y="362"
+                  text-anchor="middle"
+                  fill="#ffffff"
+                  font-size="16"
+                  font-family="sans-serif"
+                  font-weight="bold">
+                    ${surfaceText.toUpperCase()}
+               </text>`
       : ''
   }
       </svg>
