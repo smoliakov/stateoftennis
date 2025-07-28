@@ -56,15 +56,17 @@ export const tournaments: Tournament[] = [
     name: 'Brisbane International presented by Evie',
     tour: ['ATP'],
     points: 250,
-    startDate: '2024-12-30',
+    startDate: '2024-12-29',
     endDate: '2025-01-05',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
     },
     location: { city: 'Brisbane', country: 'Australia' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/brisbane/339/overview',
+    },
   },
   {
     name: 'Bank of China Hong Kong Tennis Open',
@@ -73,12 +75,14 @@ export const tournaments: Tournament[] = [
     startDate: '2024-12-30',
     endDate: '2025-01-05',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
     },
     location: { city: 'Hong Kong', country: 'China' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/hong-kong/336/overview',
+    },
   },
   {
     name: 'Adelaide International',
@@ -87,8 +91,8 @@ export const tournaments: Tournament[] = [
     startDate: '2025-01-06',
     endDate: '2025-01-12',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
     },
     location: { city: 'Adelaide', country: 'Australia' },
@@ -99,14 +103,16 @@ export const tournaments: Tournament[] = [
     tour: ['ATP'],
     points: 250,
     startDate: '2025-01-06',
-    endDate: '2025-01-12',
+    endDate: '2025-01-11',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
     },
     location: { city: 'Auckland', country: 'New Zealand' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/auckland/301/overview',
+    },
   },
   {
     name: 'Australian Open',
@@ -115,8 +121,8 @@ export const tournaments: Tournament[] = [
     startDate: '2025-01-12',
     endDate: '2025-01-26',
     court: {
-      innerColor: '#4C75A3',
-      outerColor: '#367FC3',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
       surfaceText: 'Melbourne',
     },
@@ -127,19 +133,21 @@ export const tournaments: Tournament[] = [
     },
   },
   {
-    name: 'Open Sud de France',
+    name: 'Open Occitanie',
     tour: ['ATP'],
     points: 250,
     startDate: '2025-01-27',
     endDate: '2025-02-02',
     court: {
-      innerColor: '#3E82C3',
-      outerColor: '#2C5B8A',
+      innerColor: '#597da6',
+      outerColor: '#FF9AB8',
       surface: 'Hard',
       surfaceText: '',
     },
     location: { city: 'Montpellier', country: 'France' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/montpellier/375/overview',
+    },
   },
   {
     name: 'Dallas Open',
@@ -148,8 +156,8 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-03',
     endDate: '2025-02-09',
     court: {
-      innerColor: '#3E82C3',
-      outerColor: '#2C5B8A',
+      innerColor: '#576491',
+      outerColor: '#928687',
       surface: 'Hard',
       surfaceText: '',
     },
@@ -163,13 +171,15 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-03',
     endDate: '2025-02-09',
     court: {
-      innerColor: '#3E82C3',
-      outerColor: '#2C5B8A',
+      innerColor: '#879292',
+      outerColor: '#6B6979',
       surface: 'Hard',
       surfaceText: '',
     },
     location: { city: 'Rotterdam', country: 'Netherlands' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/rotterdam/407/overview',
+    },
   },
   {
     name: 'IEB+ Argentina Open',
@@ -178,12 +188,14 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-10',
     endDate: '2025-02-16',
     court: {
-      innerColor: '#D9534F',
-      outerColor: '#B52B27',
+      innerColor: '#CD734E',
+      outerColor: '#CD734E',
       surface: 'Clay',
     },
     location: { city: 'Buenos Aires', country: 'Argentina' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/buenos-aires/506/overview',
+    },
   },
   {
     name: 'Delray Beach Open',
@@ -192,12 +204,14 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-10',
     endDate: '2025-02-16',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
     },
     location: { city: 'Delray Beach', country: 'USA' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/delray-beach/499/overview',
+    },
   },
   {
     name: 'Open 13 Provence',
@@ -206,10 +220,10 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-10',
     endDate: '2025-02-16',
     court: {
-      innerColor: '#3E82C3',
-      outerColor: '#2C5B8A',
+      innerColor: '#728EA6',
+      outerColor: '#728EA6',
       surface: 'Hard',
-      surfaceText: '',
+      surfaceText: 'Bouches du Rhône',
     },
     location: { city: 'Marseille', country: 'France' },
     links: {},
@@ -219,14 +233,17 @@ export const tournaments: Tournament[] = [
     tour: ['ATP'],
     points: 500,
     startDate: '2025-02-17',
-    endDate: '2025-02-23',
+    endDate: '2025-02-22',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
+      surfaceText: 'Qatar',
     },
     location: { city: 'Doha', country: 'Qatar' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/doha/451/overview',
+    },
   },
   {
     name: 'Rio Open presented by Claro',
@@ -235,12 +252,14 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-17',
     endDate: '2025-02-23',
     court: {
-      innerColor: '#D9534F',
-      outerColor: '#B52B27',
+      innerColor: '#CD734E',
+      outerColor: '#CD734E',
       surface: 'Clay',
     },
     location: { city: 'Rio de Janeiro', country: 'Brazil' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/rio-de-janeiro/6932/overview',
+    },
   },
   {
     name: 'Abierto Mexicano Telcel presentado por HSBC',
