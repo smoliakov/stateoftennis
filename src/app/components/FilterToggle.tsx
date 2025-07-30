@@ -14,20 +14,23 @@ const FILTERS: { label: string; value: FilterType }[] = [
   { label: 'ATP', value: 'atp' },
 ];
 
-const FilterToggle: React.FC<FilterToggleProps> = ({ activeFilters, onToggle }) => {
+const FilterToggle: React.FC<FilterToggleProps> = ({
+  activeFilters,
+  onToggle,
+}) => {
   return (
-    <div className="flex flex-wrap gap-2 mb-6 justify-center">
+    <div className="mb-6 flex flex-wrap justify-center gap-2">
       {FILTERS.map((filter) => {
         const isActive = activeFilters.includes(filter.value);
         return (
           <button
             key={filter.value}
             onClick={() => onToggle(filter.value)}
-            className={`px-3 py-1 rounded-md border text-sm font-medium transition-colors
-              ${isActive
-              ? 'bg-black text-white dark:bg-white dark:text-black'
-              : 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300'}
-              hover:bg-neutral-200 dark:hover:bg-neutral-700`}
+            className={`rounded-md border px-3 py-1 text-sm font-medium transition-colors ${
+              isActive
+                ? 'bg-black text-white dark:bg-white dark:text-black'
+                : 'bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300'
+            } hover:bg-neutral-200 dark:hover:bg-neutral-700`}
           >
             {filter.label}
           </button>

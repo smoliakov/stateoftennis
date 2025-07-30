@@ -1,7 +1,7 @@
+import './globals.css';
+
 import type { Metadata } from 'next';
 import Head from 'next/head';
-
-import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,15 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <Head>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-    </Head>
-    <body
-      className={`font-outfit antialiased`}
-    >
-    {children}
-    </body>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <body className={`font-outfit antialiased`}>{children}</body>
     </html>
   );
 }

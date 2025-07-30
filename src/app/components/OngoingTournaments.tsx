@@ -1,14 +1,16 @@
 'use client';
 
-import { getOngoingTournaments } from '@/app/utils';
 import TournamentCard from '@/app/components/TournamentCard';
 import { Tournament } from '@/app/data/tournaments';
+import { getOngoingTournaments } from '@/app/utils';
 
 const OngoingTournaments = ({ tournaments }: { tournaments: Tournament[] }) => {
   return (
     <>
-      <h2 className="text-xl md:text-3xl font-bold mb-10 md:mb-16">Ongoing Tournaments</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <h2 className="mb-10 text-xl font-bold md:mb-16 md:text-3xl">
+        Ongoing Tournaments
+      </h2>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {getOngoingTournaments(tournaments).map((tournament) => (
           <div key={tournament.name + tournament.startDate}>
             <TournamentCard tournament={tournament} />
@@ -16,7 +18,7 @@ const OngoingTournaments = ({ tournaments }: { tournaments: Tournament[] }) => {
         ))}
       </div>
 
-      <hr className="text-zinc-100 my-10 " />
+      <hr className="my-10 text-zinc-100" />
     </>
   );
 };
