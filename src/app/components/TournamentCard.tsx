@@ -13,7 +13,7 @@ const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
     name,
     tour,
     points,
-    links,
+    slug,
   } = tournament;
 
   const tourString = tour.join(' & ');
@@ -22,11 +22,12 @@ const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
   const end = new Date(endDate);
   const dateString = formatDateRange(start, end);
 
-  const link = links.atp || links.wta || 'https://www.atptour.com/en/tournaments';
+  // const link = links.atp || links.wta || 'https://www.atptour.com/en/tournaments';
+  const link = `/tournaments/${slug}`;
   const isOngoingTournament = isOngoing(startDate, endDate);
 
   return (
-    <Link href={link} target={'_blank'} rel="noreferrer noopener">
+    <Link href={link}>
       <div className="relative group p-8 pb-7 hover:bg-zinc-50 dark:hover:bg-white/10">
         {isOngoingTournament && (
           <div

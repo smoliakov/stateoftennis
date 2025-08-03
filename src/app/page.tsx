@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     follow: true,
     nocache: true,
   },
+  metadataBase: new URL('https://your-domain.com'), // replace with your domain
 };
 
 const LandingPage: React.FC = () => {
