@@ -11,20 +11,24 @@ interface TennisCourtIconProps extends IconProps {
 const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({
   className,
   tournament: {
-    court: {
-      innerColor,
-      outerColor,
-      surfaceText,
-    },
-    location: {
-      city,
-    },
+    court: { innerColor, outerColor, surfaceText },
+    location: { city },
   },
 }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 380" aria-label="Tennis Court" className={className}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 280 380"
+    aria-label="Tennis Court"
+    className={className}
+  >
     <rect width="280" height="380" fill={outerColor} />
     <rect x="50" y="50" width="180" height="280" fill={innerColor} />
-    <g fill="none" stroke="#FFFFFF" strokeWidth="5" transform="translate(50, 50)">
+    <g
+      fill="none"
+      stroke="#FFFFFF"
+      strokeWidth="5"
+      transform="translate(50, 50)"
+    >
       <rect x="0" y="0" width="180" height="280" />
       <line x1="25" y1="0" x2="25" y2="280" />
       <line x1="155" y1="0" x2="155" y2="280" />
@@ -43,7 +47,8 @@ const TennisCourtIcon: React.FC<TennisCourtIconProps> = ({
         fill="#ffffff"
         fontSize="16"
         fontFamily="sans-serif"
-        fontWeight="bold">
+        fontWeight="bold"
+      >
         {(surfaceText || city).toUpperCase()}
       </text>
     )}

@@ -283,12 +283,14 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-24',
     endDate: '2025-03-02',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
     },
     location: { city: 'Acapulco', country: 'Mexico' },
-    links: {},
+    links: {
+      atp: 'https://www.atptour.com/en/tournaments/dubai/495/overview',
+    },
     slug: 'abierto-mexicano-telcel-presentado-por-hsbc-2025',
   },
   {
@@ -305,7 +307,7 @@ export const tournaments: Tournament[] = [
     },
     location: { city: 'Dubai', country: 'UAE' },
     links: {
-      atp: 'https://www.atptour.com/en/tournaments/dubai/495/overview',
+      atp: '',
     },
     slug: 'dubai-duty-free-tennis-championships-2025',
   },
@@ -316,8 +318,8 @@ export const tournaments: Tournament[] = [
     startDate: '2025-02-24',
     endDate: '2025-03-02',
     court: {
-      innerColor: '#D9534F',
-      outerColor: '#B52B27',
+      innerColor: '#CD734E',
+      outerColor: '#CD734E',
       surface: 'Clay',
     },
     location: { city: 'Santiago', country: 'Chile' },
@@ -370,7 +372,7 @@ export const tournaments: Tournament[] = [
     slug: 'tiriac-open-2025',
   },
   {
-    name: 'Fayez Sarofim & Co. U.S. Men\'s Clay Court Championship',
+    name: "Fayez Sarofim & Co. U.S. Men's Clay Court Championship",
     tour: ['ATP'],
     points: 250,
     startDate: '2025-03-31',
@@ -460,7 +462,7 @@ export const tournaments: Tournament[] = [
     slug: 'mutua-madrid-open-2025',
   },
   {
-    name: 'Internazionali BNL d\'Italia',
+    name: "Internazionali BNL d'Italia",
     tour: ['ATP', 'WTA'],
     points: 1000,
     startDate: '2025-05-07',
@@ -531,7 +533,7 @@ export const tournaments: Tournament[] = [
       outerColor: '#8EAD52',
       surface: 'Grass',
     },
-    location: { city: '\'s-Hertogenbosch', country: 'Netherlands' },
+    location: { city: "'s-Hertogenbosch", country: 'Netherlands' },
     links: {},
     slug: 'libema-open-2025',
   },

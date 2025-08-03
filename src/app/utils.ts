@@ -1,6 +1,8 @@
 import { Tournament } from '@/app/data/tournaments';
 
-export const generateSVGString = ({ court: { outerColor, innerColor, surfaceText } }: Tournament) => {
+export const generateSVGString = ({
+  court: { outerColor, innerColor, surfaceText },
+}: Tournament) => {
   return `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 380" aria-label="Tennis Court">
         <metadata>
@@ -21,8 +23,8 @@ export const generateSVGString = ({ court: { outerColor, innerColor, surfaceText
           <line x1="90" y1="274" x2="90" y2="280" />
         </g>
         ${
-    surfaceText
-      ? `<text
+          surfaceText
+            ? `<text
                   x="140"
                   y="362"
                   text-anchor="middle"
@@ -32,8 +34,8 @@ export const generateSVGString = ({ court: { outerColor, innerColor, surfaceText
                   font-weight="bold">
                     ${surfaceText.toUpperCase()}
                </text>`
-      : ''
-  }
+            : ''
+        }
       </svg>
     `.trim();
 };
@@ -55,8 +57,20 @@ export const downloadSVG = (tournament: Tournament) => {
 };
 
 export function formatDateRange(startDate: Date, endDate: Date): string {
-  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthNames = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   const startDay = startDate.getDate();
   const endDay = endDate.getDate();
@@ -81,10 +95,12 @@ export function formatDateRange(startDate: Date, endDate: Date): string {
 
 export function getOngoingTournaments(
   tournaments: Tournament[],
-  currentDate: string = new Date().toISOString().split('T')[0],
+  currentDate: string = new Date().toISOString().split('T')[0]
 ): Tournament[] {
   return tournaments.filter((tournament) => {
-    return tournament.startDate <= currentDate && tournament.endDate >= currentDate;
+    return (
+      tournament.startDate <= currentDate && tournament.endDate >= currentDate
+    );
   });
 }
 
