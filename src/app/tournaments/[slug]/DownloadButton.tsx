@@ -1,7 +1,7 @@
 'use client';
 
-import { downloadSVG } from '@/app/utils';
 import { Tournament } from '@/app/data/tournaments';
+import { downloadSVG } from '@/app/utils';
 
 const DownloadButton = ({
   tournament,

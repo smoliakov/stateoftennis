@@ -1,10 +1,11 @@
-import { notFound } from 'next/navigation';
-import { tournaments } from '@/app/data/tournaments';
-import TennisCourtIcon from '@/app/components/TennisCourtIcon';
-import DownloadButton from '@/app/tournaments/[slug]/DownloadButton';
-import { formatDateRange } from '@/app/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import TennisCourtIcon from '@/app/components/TennisCourtIcon';
+import { tournaments } from '@/app/data/tournaments';
+import DownloadButton from '@/app/tournaments/[slug]/DownloadButton';
+import { formatDateRange } from '@/app/utils';
 
 export async function generateMetadata({
   params,

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+
 import { tournaments } from '@/app/data/tournaments';
 
 export default function sitemap(): MetadataRoute.Sitemap {
