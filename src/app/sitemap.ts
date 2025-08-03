@@ -4,7 +4,7 @@ import { tournaments } from '@/app/data/tournaments';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://stateoftennis.vercel.app';
 
-  const tournamentPages = tournaments.map(t => ({
+  const tournamentPages = tournaments.map((t) => ({
     url: `${baseUrl}/tournaments/${t.slug || ''}`,
     lastModified: new Date().toISOString(),
   }));

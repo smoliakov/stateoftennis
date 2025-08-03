@@ -6,9 +6,13 @@ import { formatDateRange } from '@/app/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const p = await params;
-  const tournament = tournaments.find(t => t.slug === p.slug);
+  const tournament = tournaments.find((t) => t.slug === p.slug);
 
   if (!tournament) {
     return {
@@ -52,9 +56,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function TournamentPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function TournamentPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const p = await params;
-  const tournament = tournaments.find(t => t.slug === p.slug);
+  const tournament = tournaments.find((t) => t.slug === p.slug);
 
   if (!tournament) {
     return notFound();
@@ -65,16 +73,19 @@ export default async function TournamentPage({ params }: { params: Promise<{ slu
   const dateString = formatDateRange(start, end);
 
   return (
-    <main className="max-w-5xl mx-auto py-8 px-4">
+    <main className="mx-auto max-w-5xl px-4 py-8">
       <Link href="/">
-        <header className="h-[60px] text-xl font-bold flex items-center justify-center mb-8">
+        <header className="mb-8 flex h-[60px] items-center justify-center text-xl font-bold">
           The Global State of Tennis 2025
         </header>
       </Link>
-      <h1 className="text-3xl  font-bold mb-10">{tournament.name}</h1>
-      <p className="text-gray-600 flex items-center">{tournament.location.city}, {dateString}<DownloadButton tournament={tournament} /></p>
+      <h1 className="mb-10 text-3xl font-bold">{tournament.name}</h1>
+      <p className="flex items-center text-gray-600">
+        {tournament.location.city}, {dateString}
+        <DownloadButton tournament={tournament} />
+      </p>
       <section className="my-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-3">
           {/* Left: SVG */}
           <div className="col-span-2">
             <TennisCourtIcon tournament={tournament} />
@@ -82,21 +93,26 @@ export default async function TournamentPage({ params }: { params: Promise<{ slu
 
           {/* Right: Info */}
           <div>
-            <p className="text-gray-600 mb-4">
-              <strong>Location:</strong> {tournament.location.city}, {tournament.location.country}
+            <p className="mb-4 text-gray-600">
+              <strong>Location:</strong> {tournament.location.city},{' '}
+              {tournament.location.country}
             </p>
-            <p className="text-gray-600 mb-4">
+            <p className="mb-4 text-gray-600">
               <strong>Dates:</strong> {dateString}
             </p>
-            <p className="text-gray-600 mb-4">
+            <p className="mb-4 text-gray-600">
               <strong>Surface:</strong> {tournament.court.surface}
             </p>
-            <p className="text-gray-600 mb-4">
+            <p className="mb-4 text-gray-600">
               <strong>Points:</strong> {tournament.points}
             </p>
             {tournament.links.atp && (
               <a
-                href={tournament.links.atp || tournament.links.wta || tournament.links.officialSite}
+                href={
+                  tournament.links.atp ||
+                  tournament.links.wta ||
+                  tournament.links.officialSite
+                }
                 className="text-blue-600 underline"
                 target="_blank"
                 rel="noopener noreferrer"

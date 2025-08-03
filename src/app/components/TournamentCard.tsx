@@ -8,15 +8,7 @@ import { downloadSVG, formatDateRange, isOngoing } from '@/app/utils';
 import TennisCourtIcon from './TennisCourtIcon';
 
 const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
-  const {
-    location,
-    startDate,
-    endDate,
-    name,
-    tour,
-    points,
-    slug,
-  } = tournament;
+  const { location, startDate, endDate, name, tour, points, slug } = tournament;
 
   const tourString = tour.join(' & ');
 
@@ -30,7 +22,7 @@ const TournamentCard = ({ tournament }: { tournament: Tournament }) => {
 
   return (
     <Link href={link}>
-      <div className="relative group p-8 pb-7 hover:bg-zinc-50 dark:hover:bg-white/10">
+      <div className="group relative p-8 pb-7 hover:bg-zinc-50 dark:hover:bg-white/10">
         {isOngoingTournament && (
           <div className="absolute top-2 left-2 flex items-center rounded-lg bg-emerald-100 px-[6px] py-[1px] pl-[4px] text-[10px] font-bold text-emerald-600 uppercase">
             {/* Ripple Container */}
