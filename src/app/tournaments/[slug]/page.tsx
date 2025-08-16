@@ -107,19 +107,44 @@ export default async function TournamentPage({
             <p className="mb-4 text-gray-600">
               <strong>Points:</strong> {tournament.points}
             </p>
+            <p className="mb-2 text-gray-600">
+              <strong>Links:</strong>
+            </p>
             {tournament.links.atp && (
-              <a
-                href={
-                  tournament.links.atp ||
-                  tournament.links.wta ||
-                  tournament.links.officialSite
-                }
-                className="text-blue-600 underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Official Website
-              </a>
+              <p>
+                <a
+                  href={tournament.links.atp}
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ATP Website
+                </a>
+              </p>
+            )}
+            {tournament.links.wta && (
+              <p>
+                <a
+                  href={tournament.links.wta}
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WTA Website
+                </a>
+              </p>
+            )}
+            {tournament.links.officialSite && (
+              <p>
+                <a
+                  href={tournament.links.officialSite}
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Official Website
+                </a>
+              </p>
             )}
           </div>
         </div>

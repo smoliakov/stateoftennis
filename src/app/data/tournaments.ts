@@ -773,6 +773,24 @@ export const tournaments: Tournament[] = [
     slug: 'cincinnati-open-2025',
   },
   {
+    name: 'Tennis in the Land powered by Rocket',
+    tour: ['WTA'],
+    points: 250,
+    startDate: '2025-08-16',
+    endDate: '2025-08-23',
+    court: {
+      surface: 'Hard',
+      innerColor: '#5A82B6',
+      outerColor: '#86A076',
+    },
+    location: { city: 'Cleveland', country: 'USA' },
+    links: {
+      officialSite: 'https://www.tennisintheland.com/',
+      wta: 'https://www.wtatennis.com/tournaments/2040/cleveland/2025',
+    },
+    slug: 'tennis-in-the-land-2025',
+  },
+  {
     name: 'Winston-Salem Open',
     tour: ['ATP'],
     points: 250,
