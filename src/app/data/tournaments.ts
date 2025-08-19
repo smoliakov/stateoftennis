@@ -812,7 +812,7 @@ export const tournaments: Tournament[] = [
     name: 'US Open',
     tour: ['ATP', 'WTA'],
     points: 2000,
-    startDate: '2025-08-24',
+    startDate: '2025-08-18',
     endDate: '2025-09-07',
     court: {
       innerColor: '#5A82B6',
@@ -823,6 +823,8 @@ export const tournaments: Tournament[] = [
     location: { city: 'New York', country: 'USA' },
     links: {
       atp: 'https://www.atptour.com/en/tournaments/us-open/560/overview',
+      officialSite: 'https://www.usopen.org',
+      wta: 'https://www.wtatennis.com/tournaments/us-open',
     },
     slug: 'us-open-2025',
   },
