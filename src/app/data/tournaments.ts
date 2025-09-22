@@ -809,6 +809,32 @@ export const tournaments: Tournament[] = [
     slug: 'winston-salem-open-2025',
   },
   {
+    name: 'Abierto GNP Seguros',
+    tour: ['WTA'],
+    points: 500,
+    slug: 'monterrey-2025',
+
+    startDate: '2025-08-18',
+    endDate: '2025-08-23',
+
+    court: {
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
+      surface: 'Hard',
+      surfaceText: 'Monterrey',
+    },
+
+    location: {
+      city: 'Monterrey',
+      country: 'Mexico',
+    },
+
+    links: {
+      wta: 'https://www.wtatennis.com/tournaments/1039/monterrey/2025',
+      officialSite: 'https://abiertognpseguros.com/',
+    }
+  },
+  {
     name: 'US Open',
     tour: ['ATP', 'WTA'],
     points: 2000,
