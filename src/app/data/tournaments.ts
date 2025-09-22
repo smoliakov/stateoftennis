@@ -853,9 +853,10 @@ export const tournaments: Tournament[] = [
     startDate: '2025-09-17',
     endDate: '2025-09-23',
     court: {
-      innerColor: '#4A90E2',
-      outerColor: '#3468A1',
+      innerColor: '#597da6',
+      outerColor: '#5c90c1',
       surface: 'Hard',
+      surfaceText: 'Hangzhou 杭州',
     },
     location: { city: 'Hangzhou', country: 'China' },
     links: {},
